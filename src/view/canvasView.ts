@@ -49,7 +49,7 @@ export class CanvasView {
     }
 
     //dibujar objetos.
-    drawObject(object: Brick | Player | Ball ): void{
+    drawObject(object: Brick): void{
 
         if(!object) return;
 

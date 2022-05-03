@@ -23,6 +23,8 @@ import{
 } from "setup";
 
 import {setGameOver , setGameWin } from "./view/setGame";
+import { createBricks } from "./processes/BricksGridCreator";
+
 
 //variables
 let gameOver = false;
@@ -33,12 +35,31 @@ function gameLoop(
  
     view:CanvasView,
     bricks:Brick[],
-    player:Player,
-    ball: Ball,
+    // player:Player,
+    // ball: Ball,
 
-){}
+){  
+    //limpiar el canvas.
+    view.clear();
+    view.drawBricks(bricks);
 
-function startGame(view: CanvasView) {}
+    requestAnimationFrame(()=> gameLoop(view,bricks))
+}
+
+function startGame(view: CanvasView) {
+
+    //reiniciar las variables.
+    score = 0;
+    view.drawInfo("🤭");
+    view.drawScore(0);
+
+    //crear todo los ladrillos.
+
+    const bricks = createBricks();
+
+    gameLoop(view,bricks);
+
+}
 
 //creando un nuevo juego.
 const view = new CanvasView("#Field");
