@@ -1,6 +1,4 @@
-import { Brick } from "~/objects/brick";
-
-export function GenerateLevel(){
+export function GenerateLevel():number[]{
     
     let Level = [];
 

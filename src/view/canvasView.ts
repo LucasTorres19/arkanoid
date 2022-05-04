@@ -1,6 +1,6 @@
-import { Brick } from 'objects/brick';
-import { Ball } from 'objects/ball';
-import { Player } from 'objects/player';
+import { Brick } from '~/objects/brick';
+import { Ball } from '~/objects/ball';
+import { Player } from '~/objects/player';
 
 export class CanvasView {
 
@@ -49,7 +49,7 @@ export class CanvasView {
     }
 
     //dibujar objetos.
-    drawObject(object: Brick): void{
+    drawObject(object: Brick | Player ): void{
 
         if(!object) return;
 
