@@ -25,12 +25,11 @@ import{
 import {setGameOver , setGameWin } from "./view/setGame";
 import { createBricks } from "./processes/BricksGridCreator";
 
-
 //variables
 let gameOver = false;
 let score = 0;
 
-
+//funciones
 function gameLoop(
  
     view:CanvasView,
@@ -45,13 +44,9 @@ function gameLoop(
     //dibujar los objetos.
     view.drawBricks(bricks);
     view.drawObject(player);
-    console.log(player);
+
     //mover al jugador.
-    if(
-        (player.isMovingLeft && player.pos.x > 0) || (player.isMovingRight && player.pos.x < view.canvas.width - player.width)
-    ){
-        player.movePlayer();
-    }
+    player.mainMove(view);
 
     requestAnimationFrame(()=> gameLoop(view,bricks,player));
 }
@@ -62,10 +57,11 @@ function startGame(view: CanvasView) {
     score = 0;
     view.drawInfo("🤭");
     view.drawScore(0);
-
+    let bricks:Brick[];
+    
     //crear todo los ladrillos.
-    const bricks = createBricks();
-
+    bricks = createBricks();
+    
     //crear el jugador.
     const player = new Player(
         PLAYER_SPEED,

@@ -63,5 +63,4 @@ export const BRICK_ENERGY: { [key: number]: number } = {
     
 // ];
 
-export const LEVEL = GenerateLevel();
 

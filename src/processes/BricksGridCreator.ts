@@ -1,9 +1,9 @@
 import { Brick } from "~/objects/brick";
+import { GenerateLevel } from "./GenerateLevels";
 
 import{
 
     BRICK_IMAGES,
-    LEVEL,
     STAGE_COLS,
     STAGE_PADDING,
     BRICK_WIDTH,
@@ -13,9 +13,10 @@ import{
 
 } from "../setup";
 
-
 export function createBricks():Brick[] {
-   
+    
+    let LEVEL = GenerateLevel();
+    
     return LEVEL.reduce((ack,element,i)=>{
 
         const row = Math.floor(i+1)/STAGE_COLS;

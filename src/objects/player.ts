@@ -1,5 +1,5 @@
-import { skipPartiallyEmittedExpressions } from 'typescript';
 import { Vector } from '../types';
+import { CanvasView  } from "../view/canvasView";
 
 export class Player {
 
@@ -60,6 +60,16 @@ export class Player {
         }
     }
     
+    mainMove(view: CanvasView ):void{
+
+        if(
+            (this.isMovingLeft && this.pos.x > 0) || (this.isMovingRight && this.pos.x < view.canvas.width - this.width)
+        ){
+            this.movePlayer();
+        }
+    }
+
+
     //getters
     get width(): number{
         return this.playerWidth;
@@ -84,7 +94,5 @@ export class Player {
     get isMovingRight():boolean{
         return this.moveRight;
     }
-
-
 
 }
