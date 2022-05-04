@@ -3,6 +3,7 @@ import GREEN_BRICK_IM from './assets/images/verde.png';
 import VIOLET_BRICK_IM from './assets/images/violeta.png';
 import YELLOW_BRICK_IM from './assets/images/amarillo.png';
 import LIGHTBLUE_BRICK_IM from './assets/images/celeste.png';
+import { GenerateLevel } from './processes/GenerateLevels';
 
 const canvas: HTMLCanvasElement | null = document.querySelector('#Field');
 
@@ -48,13 +49,16 @@ export const BRICK_ENERGY: { [key: number]: number } = {
 
   };
 
-export const LEVEL = [
+// export const LEVEL = [
 
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 1, 1, 1, 1, 1, 1, 0, 0,
-    0, 2, 2, 2, 2, 2, 2, 2, 2, 0,
-    0, 3, 3, 3, 3, 3, 3, 3, 3, 0,
-    0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 
-    0, 0, 5, 5, 0, 0, 5, 5, 0, 0,
+//     0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+//     0, 0, 1, 1, 1, 1, 1, 1, 0, 0,
+//     0, 2, 2, 2, 2, 2, 2, 2, 2, 0,
+//     0, 3, 3, 3, 3, 3, 3, 3, 3, 0,
+//     0, 0, 4, 4, 4, 4, 4, 4, 0, 0, 
+//     0, 0, 5, 5, 0, 0, 5, 5, 0, 0,
+    
+// ];
 
-];
+export const LEVEL = GenerateLevel();
+
