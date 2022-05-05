@@ -30,7 +30,14 @@ export class CanvasView {
     initStartButton(startFunction:(view:CanvasView) => void) :void {
 
         this.start?.addEventListener('click',() => startFunction(this));
+        
+        this.start?.addEventListener('keydown',(e:KeyboardEvent) => {
 
+            if(e.code ==="KeyR" || e.key ==="KeyR"){
+                startFunction(this);
+            }
+    
+        });
     }
     //mostrar el score.
     drawScore(score:number):void{
@@ -49,7 +56,7 @@ export class CanvasView {
     }
 
     //dibujar objetos.
-    drawObject(object: Brick | Player ): void{
+    drawObject(object: Brick | Player | Ball ): void{
 
         if(!object) return;
 

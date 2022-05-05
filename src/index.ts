@@ -11,14 +11,8 @@ import BALL_IMAGE from "./assets/images/pelota.png";
 //importar configuraciones
 import{
  
- PLAYER_WIDTH,
- PLAYER_HEIGHT,
- PLAYER_STARTX,
- PLAYER_SPEED,
- BALL_SPEED,
- BALL_SIZE,
- BALL_STARTX,
- BALL_STARTY
+ PLAYER_WIDTH,PLAYER_HEIGHT,PLAYER_STARTX,PLAYER_SPEED,
+ BALL_SPEED,BALL_SIZE,BALL_STARTX,BALL_STARTY
 
 } from "./setup";
 
@@ -30,26 +24,6 @@ let gameOver = false;
 let score = 0;
 
 //funciones
-function gameLoop(
- 
-    view:CanvasView,
-    bricks:Brick[],
-    player:Player,
-    // ball: Ball,
-
-){  
-    //limpiar el canvas.
-    view.clear();
-   
-    //dibujar los objetos.
-    view.drawBricks(bricks);
-    view.drawObject(player);
-
-    //mover al jugador.
-    player.mainMove(view);
-
-    requestAnimationFrame(()=> gameLoop(view,bricks,player));
-}
 
 function startGame(view: CanvasView) {
 
@@ -74,9 +48,45 @@ function startGame(view: CanvasView) {
         PLAYER_IMAGE
     )
 
-    gameLoop(view,bricks,player);
+    //crear la pelota.
+    const ball = new Ball(
+        BALL_SPEED,
+        BALL_SIZE,
+        {
+            x:BALL_STARTX,
+            y:BALL_STARTY,
+        },
+        BALL_IMAGE
+    );
+    
+    gameLoop(view,bricks,player,ball);
 
 }
+
+function gameLoop(
+ 
+    view:CanvasView,
+    bricks:Brick[],
+    player:Player,
+    ball: Ball,
+
+){  
+    //limpiar el canvas.
+    view.clear();
+   
+    //dibujar los objetos.
+    view.drawBricks(bricks);
+    view.drawObject(player);
+    view.drawObject(ball);
+
+    //mover al jugador.
+    player.mainMove(view);
+    //mover pelota.
+    ball.moveBall();
+
+    requestAnimationFrame(()=> gameLoop(view,bricks,player,ball));
+}
+
 
 //creando un nuevo juego.
 const view = new CanvasView("#Field");

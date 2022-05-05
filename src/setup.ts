@@ -27,10 +27,10 @@ export const PLAYER_STARTX =
 canvas ? (canvas.width  + (PLAYER_WIDTH / 2)) / 2.5
 : 300;
 export const PLAYER_SPEED = 2;
-export const BALL_SPEED = 5;
-export const BALL_SIZE = 20;
-export const BALL_STARTX = 500;
-export const BALL_STARTY = 400;
+export const BALL_SPEED = 1;
+export const BALL_SIZE = 6;
+export const BALL_STARTX = 100;
+export const BALL_STARTY = 100;
 
 
 export const BRICK_IMAGES:{[key:number]:string} = {
