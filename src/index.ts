@@ -30,6 +30,7 @@ function startGame(view: CanvasView) {
 
     //reiniciar las variables.
     score = 0;
+    gameOver = false;
     view.drawInfo("🤭");
     view.drawScore(0);
     let bricks:Brick[];
