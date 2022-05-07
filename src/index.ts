@@ -62,7 +62,8 @@ function startGame(view: CanvasView) {
         },
         BALL_IMAGE
     );
-    
+
+    //reiniciar el game loop.
     gameLoop(view,bricks,player,ball,colision);
 
 }
@@ -91,11 +92,23 @@ function gameLoop(
     //verificar colision.
     colision.BallCollision(ball,player,view);
 
+    //verificar colicion con bloques para ganar puntos.
     const collidingBrick = colision.BallColisionBricks(ball,bricks);
 
     if(collidingBrick){
         score += 1;
         view.drawScore(score);
+    }
+
+     //verificar si la pelota se fue del mapa.
+     if(ball.pos.y > view.canvas.height) gameOver = true;
+    
+     //verificar si se gana el juego.
+    if(bricks.length === 0){
+        return setGameWin(view,gameOver);
+    }
+    if(gameOver) {
+        return setGameOver(view,gameOver);
     }
 
     requestAnimationFrame(()=> gameLoop(view,bricks,player,ball,colision));

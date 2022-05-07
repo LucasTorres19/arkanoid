@@ -2,8 +2,7 @@ import RED_BRICK_IM from './assets/images/rojo.png';
 import GREEN_BRICK_IM from './assets/images/verde.png';
 import VIOLET_BRICK_IM from './assets/images/violeta.png';
 import YELLOW_BRICK_IM from './assets/images/amarillo.png';
-import LIGHTBLUE_BRICK_IM from './assets/images/celeste.png';
-import { GenerateLevel } from './processes/GenerateLevels';
+import LIGHTBLUE_BRICK_IM from './assets/images/celeste.png';;
 
 const canvas: HTMLCanvasElement | null = document.querySelector('#Field');
 
