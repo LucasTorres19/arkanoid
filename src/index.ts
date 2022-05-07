@@ -18,6 +18,7 @@ import{
 
 import {setGameOver , setGameWin } from "./view/setGame";
 import { createBricks } from "./processes/BricksGridCreator";
+import { Collision } from "./processes/collision";
 
 //variables
 let gameOver = false;
@@ -32,7 +33,10 @@ function startGame(view: CanvasView) {
     view.drawInfo("🤭");
     view.drawScore(0);
     let bricks:Brick[];
-    
+
+    //crear las colisiones.
+    const colision = new Collision();
+
     //crear todo los ladrillos.
     bricks = createBricks();
     
@@ -59,7 +63,7 @@ function startGame(view: CanvasView) {
         BALL_IMAGE
     );
     
-    gameLoop(view,bricks,player,ball);
+    gameLoop(view,bricks,player,ball,colision);
 
 }
 
@@ -69,6 +73,7 @@ function gameLoop(
     bricks:Brick[],
     player:Player,
     ball: Ball,
+    colision: Collision
 
 ){  
     //limpiar el canvas.
@@ -83,8 +88,17 @@ function gameLoop(
     player.mainMove(view);
     //mover pelota.
     ball.moveBall();
+    //verificar colision.
+    colision.BallCollision(ball,player,view);
 
-    requestAnimationFrame(()=> gameLoop(view,bricks,player,ball));
+    const collidingBrick = colision.BallColisionBricks(ball,bricks);
+
+    if(collidingBrick){
+        score += 1;
+        view.drawScore(score);
+    }
+
+    requestAnimationFrame(()=> gameLoop(view,bricks,player,ball,colision));
 }
 
 
